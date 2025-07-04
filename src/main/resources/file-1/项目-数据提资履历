@@ -1,0 +1,32 @@
+项目名称 数据提资履历管理系统
+内容： 设计并实现了一套完整的结构化数据提资流程，支持多项目、多租户的数据接入与隔离。
+提资方按照统一标准将对象实例数据（如设备类下的阀门、泵、放射性等属性）组织为JSON格式提交至数据中台，
+服务端通过Kafka接收数据，并由消费端解析、转换为StarRocks横表结构，最终通过Stream Load方式写入StarRocks。
+下游业务方（如风控组、算法组）可直接查询大宽表进行数据分析和采样。系统支持日均10亿级数据量处理，整体耗时约19分钟。
+开发工具： Spring Cloud、Apache Kafka、StarRocks、Apache NiFi、Prometheus、Grafana、Git
+主要技术：
+微服务架构设计与高并发接口开发（Spring Boot + Spring Cloud）
+Kafka 高性能消息队列配置与调优（分区策略、幂等生产者、批量发送等）
+StarRocks 大数据存储与 Stream Load 批量导入优化
+数据流转与ETL处理（NiFi图形化流程编排）
+多租户数据隔离与分库方案设计
+实时监控体系搭建（Prometheus + Grafana）
+担任角色： 核心开发工程师
+负责工作：
+主导提资接收接口的设计与开发，集成限流熔断机制保障系统稳定性；
+设计基于Kafka的消息传输架构，完成高性能Producer/Consumer的开发与调优；
+编写Kafka消费端逻辑，实现JSON数据到StarRocks宽表结构的高效转换；
+搭建基于NiFi的ETL流程，支持从StarRocks宽表向IoTDB的数据分流；
+调优JVM参数与GC策略，提升系统吞吐能力并减少延迟；
+构建监控告警体系，实时追踪Kafka Lag、系统吞吐、GC状态等关键指标。
+业绩：
+实现日均10亿条数据的稳定接入与处理，端到端平均处理耗时 < 2ms/条；
+成功支撑多个大型项目的提资需求，数据一致性达到100%；
+通过Kafka+StarRocks架构显著提升写入效率，较原有方案性能提升5倍以上；
+基于NiFi构建灵活的数据流转流程，提升了数据治理效率与可视化运维能力；
+系统上线后运行稳定，未出现因性能瓶颈导致的服务不可用情况。
+
+主要技术：Spring Cloud、kafka、StarRocks、Apache NiFi、Apache IoTDB
+
+=====接口性能
+16C32G 单节点 QPS，8000，限流为每秒 QPS 7000
