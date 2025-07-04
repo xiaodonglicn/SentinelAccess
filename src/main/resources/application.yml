@@ -1,0 +1,22 @@
+server:
+  port: 3389
+spring:
+  application:
+    name: sentinel-demo
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # Sentinel控制台地址
+        port: 8719 # 本地启动的http服务端口，用于与Sentinel控制台通信
+      eager: true # 是否立即加载Sentinel控制台
+      filter:
+        enabled: false # 关闭Sentinel的默认过滤器，我们将使用注解方式
+
+# 如果使用Nacos作为规则数据源（可选）
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: localhost:8848
+#            dataId: ${spring.application.name}-flow-rules
+#            groupId: DEFAULT_GROUP
+#            rule-type: flow
